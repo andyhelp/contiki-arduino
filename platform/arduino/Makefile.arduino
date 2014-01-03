@@ -53,7 +53,7 @@ AVR_MCU_SPEED	= 16000000UL
 MCU		= atmega328p 
 USART_PORT	= 0
 AVRDUDE_BAUD = 115200
-AVRDUDE_PORT		= /dev/ttyACM00
+AVRDUDE_PORT		= /dev/ttyACM0
 
 else
 $(error Please define Arduino board model in Makefile.arduino)
