@@ -49,6 +49,7 @@
 #include "contiki-net.h"
 #include "contiki-lib.h"
 
+#include "dev/leds.h"
 #include "dev/rs232.h"
 #include "dev/serial-line.h"
 #include "dev/slip.h"
@@ -93,6 +94,9 @@ int
 main(void)
 {
   //calibrate_rc_osc_32k(); //CO: Had to comment this out
+
+  /* Init LEDs */
+  leds_init();
 
   /* Initialize hardware */
   init_lowlevel();
