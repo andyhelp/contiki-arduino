@@ -1,26 +1,21 @@
 #include <dev/leds.h>
-#include "Arduino.h"
 
-#define YELLOW_PIN 13
 
-void
-leds_arch_init(void)
+void leds_arch_init(void)
 {
-  pinMode(YELLOW_PIN, OUTPUT);
+  LEDS_PxDIR |= LEDS_CONF_YELLOW;
 }
 
-unsigned char
-leds_arch_get(void)
+unsigned char leds_arch_get(void)
 {
-  unsigned char on = 0;
-  
-  if (digitalRead(YELLOW_PIN)) on |= LEDS_YELLOW;
-
-  return on;
+  return ( LEDS_PxOUT & LEDS_CONF_YELLOW ) ? LEDS_YELLOW : 0;
 }
 
-void
-leds_arch_set(unsigned char leds)
+void leds_arch_set(unsigned char leds)
 {
-  digitalWrite(YELLOW_PIN, leds & LEDS_YELLOW);
+  if( leds & LEDS_YELLOW ) {
+    LEDS_PxOUT |= LEDS_CONF_YELLOW;
+  } else {
+    LEDS_PxOUT &= ~LEDS_CONF_YELLOW;
+  }
 }
